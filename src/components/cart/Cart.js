@@ -1,15 +1,17 @@
 import React from 'react';
 import './Cart.css'
-
-const Cart = ({cart}) => {
+import style from './card.module.css'
+const Cart = ({cart,clearCart}) => {
     // console.log(cart);
     let total=0;
     let shipping=0;
+    let quantity=0;
     
     //cart r bitor jotoghula product ache.
     for(const product of cart){
-        total=total + product.price
-        shipping=shipping + product.shipping
+        quantity=quantity + product.quantity;
+        total=total + product.price * product.quantity
+        shipping=shipping + product.shipping * product.quantity
     }
 
     const tax = parseFloat((total * 0.1).toFixed(2));
@@ -17,12 +19,13 @@ const Cart = ({cart}) => {
 
     return (
         <div className='cart'>
-                <h4>Order Summary</h4>
-                <p>Selected Items:{cart.length}</p>
+                <h4 className={style.p}>Order Summary</h4>
+                <p className='p'>Selected Items:{quantity}</p>
                 <p>Total Price:${total}</p>
                 <p>Total Shiping:${shipping}</p>
                 <p>Tax: ${tax}</p>
                 <h5>Grand Total: ${grandTotal}</h5>
+                <button onClick={clearCart}>Clear Cart</button>
         </div>
     );
 };
