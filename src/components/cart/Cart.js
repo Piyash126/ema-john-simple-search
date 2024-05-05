@@ -1,7 +1,7 @@
 import React from 'react';
 import './Cart.css'
 import style from './card.module.css'
-const Cart = ({cart,clearCart}) => {
+const Cart = ({cart,clearCart,children}) => {
     // console.log(cart);
     let total=0;
     let shipping=0;
@@ -25,7 +25,8 @@ const Cart = ({cart,clearCart}) => {
                 <p>Total Shiping:${shipping}</p>
                 <p>Tax: ${tax}</p>
                 <h5>Grand Total: ${grandTotal}</h5>
-                <button onClick={clearCart}>Clear Cart</button>
+                <button onClick={clearCart} className='clear-cart'>Clear Cart</button>
+                {children}
         </div>
     );
 };
